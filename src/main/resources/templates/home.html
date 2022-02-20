@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> Olá <span th:text="${usuarioLogin.getLogin()}"></span></h1>
+<form method="post" action="/registrarUrl">
+    <div class="input-box">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <input type="text" name="urlOriginal" placeholder="URL" required>
+    </div>
+    <div class="input-box">
+        <input type="submit" name="sign-in" value="Cadastrar">
+    </div>
+</form>
+</body>
+</html>
