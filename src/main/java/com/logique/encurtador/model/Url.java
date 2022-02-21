@@ -1,6 +1,7 @@
 package com.logique.encurtador.model;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,8 @@ public class Url {
     private Integer id;
 
     private LocalDateTime data;
+
+    @Type(type = "text")
     private String urlOriginal;
     private String urlEncurtada;
     private Integer usuarioId;

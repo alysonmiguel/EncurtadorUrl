@@ -2,6 +2,7 @@ package com.logique.encurtador.service;
 
 import com.logique.encurtador.model.Url;
 import com.logique.encurtador.repository.UrlRepository;
+import com.logique.encurtador.utils.Encurtado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,13 @@ public class UrlService {
         return urlRepository.findAllByUsuarioId(id);
     }
 
-    public Url createUrl(Url url){
-        return urlRepository.save(url);
+    public void salvarUrl(Url url, String local){
+         url.setUrlEncurtada(local +"/getUrl/"+ Encurtado.encurtar(urlRepository.save(url)));
+         urlRepository.save(url);
     }
+
+    public Url getUrl(String encurtada){
+       return urlRepository.findUrlByUrlEncurtada(encurtada);
+    }
+
 }

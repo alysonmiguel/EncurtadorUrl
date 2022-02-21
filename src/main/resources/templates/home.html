@@ -1,19 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
 </head>
 <body>
-<h1> Olá <span th:text="${usuarioLogin.getLogin()}"></span></h1>
-<form method="post" action="/registrarUrl">
-    <div class="input-box">
-        <i class="fa fa-user" aria-hidden="true"></i>
-        <input type="text" name="urlOriginal" placeholder="URL" required>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="#">Bem vindo!</a>
+            <form class="d-flex">
+                <button class="btn text-white" type="submit">Sair</button>
+            </form>
+        </div>
     </div>
-    <div class="input-box">
-        <input type="submit" name="sign-in" value="Cadastrar">
+</nav>
+<div class="container card mb-5 mt-2 bg-light">
+    <div class="card-body">
+        <form method="post" action="/encurtarUrl">
+            <div class="input-group mb-3">
+                <input id="url" name="urlOriginal" type="text" class="form-control" placeholder="Insira a URL">
+                <button class="btn btn-primary" type="submit">Encurtar URL</button>
+            </div>
+        </form>
     </div>
-</form>
+</div>
+<div class="container ">
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="thead-dark" >
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col" >Data da inserção</th>
+                <th scope="col" >URL original</th>
+                <th scope="col" >URL encurtada</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="u : ${urls}" th:object="${u}">
+                <th scope="row" th:text="*{id}" ></th>
+                <td th:text="*{data}" ></td>
+                <td th:text="*{urlOriginal}" ></td>
+                <td th:text="*{urlEncurtada}"></td>
+                <td>
+                    <a class="btn btn-outline-danger" th:href="@{'/deletar/' + *{id}}">Deletar </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--<form method="post" action="/registrarUrl">-->
+<!--    <div class="input-box">-->
+<!--        <i class="fa fa-user" aria-hidden="true"></i>-->
+<!--        <input type="text" name="urlOriginal" placeholder="URL" required>-->
+<!--    </div>-->
+<!--    <div class="input-box">-->
+<!--        <input type="submit" name="sign-in" value="Cadastrar">-->
+<!--    </div>-->
+<!--</form>-->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+-->
 </body>
 </html>

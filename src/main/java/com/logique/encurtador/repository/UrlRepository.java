@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface UrlRepository extends JpaRepository<Url, Integer> {
     List<Url> findAllByUsuarioId(Integer id);
-
+    Url findUrlByUrlEncurtada(String urlEncutada);
 }
