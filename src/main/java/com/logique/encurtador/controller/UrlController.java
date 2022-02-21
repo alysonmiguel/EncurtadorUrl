@@ -44,9 +44,11 @@ public class UrlController {
         if (c != null) {
             url.setUsuarioId(Integer.parseInt(new String(Base64.getDecoder().decode(c.getValue()))));
         }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime tempoAtual = LocalDateTime.now();
-        url.setData(tempoAtual);
-        System.out.println("URL" + url);
+        LocalDateTime dateTime = LocalDateTime.parse(tempoAtual.format(formatter), formatter);
+        url.setData(dateTime);
 
         urlService.salvarUrl(url, makeUrl(request));
 
